@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //    MyGallery myGallery=new MyGallery();
 
+    Databasehelper dbhelp = new Databasehelper(this);
+    Contact c=new Contact();
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int RC_SIGN_IN = 007;
     CallbackManager callbackManager;
@@ -87,8 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onSuccess(LoginResult loginResult) //executes if log in is successful
                     {
                         setFacebookData(loginResult);
-                        Intent intent = new Intent(MainActivity.this, MyGallery.class);
-                        startActivity(intent);
+
                     }
 
                     @Override
@@ -104,6 +105,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                 });
+
+//        c=dbhelp.checkLogin();
+//        if (c.getApp().equals("Google"))
+//        {
+//            dbhelp.delete();
+//            signIn();
+//        }
+//
+//
+//         else if (c.getApp().equals("Facebook"))
+//        {
+//            dbhelp.delete();
+//            LoginManager.getInstance().logInWithReadPermissions(MainActivity.this, Arrays.asList("public_profile", "user_friends", "email"));
+//        }
 
     }
 
@@ -130,6 +145,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void signIn() {
         boolean connected = isNetworkAvailable();
         if (connected == true) {
+            c.setApp("Google");
+            dbhelp.insert(c);
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
             startActivityForResult(signInIntent, RC_SIGN_IN);
         } else {
@@ -137,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     //sign out  function for google
-    private void signOut() {
+    void signOut() {
 
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
@@ -152,46 +169,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //function to fetch the google log in data(Name , Email and profile) for current profile logged in
                     public void handleSignInResult(GoogleSignInResult result) {
                         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
-                        if (!result.isSuccess()) {
-                            // Signed out, show unauthenticated UI.
-//                            updateUI(false);
+                        if (!result.isSuccess())
+                        {
 
-                        } else {
+                        }
+                        else {
                             // Signed in successfully, show authenticated UI.
                             GoogleSignInAccount acct = result.getSignInAccount();
                             Log.e(TAG, "display name: " + acct.getDisplayName());
 
-                            String personName = acct.getDisplayName();
-                            String emails = acct.getEmail();
-
-                            String Pic;
-                            Pic = acct.getPhotoUrl().toString();
+                            userName = acct.getDisplayName();
+                            email = acct.getEmail();
+                            if(acct.getPhotoUrl()!=null)
+                            {
+                                userPic = acct.getPhotoUrl().toString();
+                            }
+                            else
+                            {
+                                userPic="Nopic";
+                            }
+                            c.setName(userName);
+                            c.setEmail(email);
+                            c.setPic(userPic);
+                            c.setApp("Google");
+                            c.setDate(DateFormat.getDateTimeInstance().format(new Date()).toString());
+                            dbhelp.insert(c);
                             Intent intent = new Intent(MainActivity.this, MyGallery.class);
                             startActivity(intent);
-//            userName.setText(personName);
-//            email.setText(emails);
-//            if (acct.getPhotoUrl() == null) {
-//                userPic.setImageResource(R.drawable.noic1);
-//            }
-//Displaying profile photo with the help of glide
-//            else{
-//                Pic = acct.getPhotoUrl().toString();
-//                Glide.with(getApplicationContext()).load(Pic)
-//                        .thumbnail(0.5f)
-//                        .crossFade()
-//                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                        .into(userPic);
-//                            }
-//                            Log.e(TAG, "Name: " + personName + ", email: " + emails);
-//
-//Inserting details into database.
-//            c.setDate(DateFormat.getDateTimeInstance().format(new Date()).toString());
-//            c.setApp("Google");
-//            c.setName(personName);
-//            c.setEmail(emails);
-//            dbhelp.insert(c);
-// in case of successful login change the UI to the present porfile pic, name, email.
-//            updateUI(true);
                         }
 
                     }
@@ -226,7 +230,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             email = emails;
                                             userPic = Profile.getCurrentProfile().getProfilePictureUri(200, 200).toString();
                                             Log.i("Link", link);
-
+                                            c.setName(userName);
+                                            c.setEmail(email);
+                                            c.setPic(userPic);
+                                            c.setApp("Facebook");
+                                            c.setDate(time);
+                                            dbhelp.insert(c);
+                                            Intent intent = new Intent(MainActivity.this, MyGallery.class);
+                                            startActivity(intent);
 //                            myGallery.display(userName,email,userPic);
                                         } catch (JSONException e) {
                                             e.printStackTrace();

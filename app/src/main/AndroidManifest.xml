@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MyGallery" />
+        <activity android:name=".ViewGallery"/>
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
     </application>

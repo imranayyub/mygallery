@@ -1,35 +1,33 @@
 {
   "project_info": {
-    "project_number": "963287200107",
-    "firebase_url": "https://singin-56413.firebaseio.com",
-    "project_id": "singin-56413",
-    "storage_bucket": "singin-56413.appspot.com"
+    "project_number": "577231096901",
+    "project_id": "ageless-aura-182118"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:963287200107:android:9d7a3ea0537731aa",
+        "mobilesdk_app_id": "1:577231096901:android:4ef77e020697e6ce",
         "android_client_info": {
           "package_name": "com.example.im.practicetask"
         }
       },
       "oauth_client": [
         {
-          "client_id": "963287200107-208vd0iohq7n4b8uac88plqjk8vorj14.apps.googleusercontent.com",
+          "client_id": "577231096901-j4lbnb2vr1onl3u35sav0v10dm38g8no.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "577231096901-h7m98f1ebrsv3ccg3am07fc71rdm7glq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.im.practicetask",
             "certificate_hash": "04f5587f3ce80359f37388e2fd88ca51c2f2ccbc"
           }
-        },
-        {
-          "client_id": "963287200107-s9uk5alqmjcfbutq18a118mfgm4cddfq.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBKDk3gAlFPskkSigDMPz_xbI0KfzDKBEw"
+          "current_key": "AIzaSyD7Xi5fyhwVc3vuh0Wf-fEHxVTupU-d1tg"
         }
       ],
       "services": {
@@ -37,16 +35,11 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "963287200107-s9uk5alqmjcfbutq18a118mfgm4cddfq.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 2
+          "status": 1
         }
       }
     }

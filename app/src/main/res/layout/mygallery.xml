@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/info"
-            android:layout_marginLeft="170dp"
+            android:layout_marginLeft="150dp"
             android:layout_marginTop="70dp"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
@@ -30,12 +30,26 @@
             android:id="@+id/logOutBn"
             android:layout_marginTop="170dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:text="Log Out"
-            android:background="@color/com_facebook_blue"
-            android:drawableLeft="@drawable/fbbtn3"
+             android:drawableLeft="@drawable/fbbtn3"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:background="@drawable/mybutton"
+            android:visibility="invisible"
+            />
+        <Button
+            android:id="@+id/gmailogOutBn"
+            android:layout_marginTop="170dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="Log Out"
+            android:drawableLeft="@drawable/googleicon"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/mybutton"
+            android:visibility="invisible"
+            />
     </RelativeLayout>
 
     <LinearLayout
@@ -51,32 +65,35 @@
             android:textAlignment="center"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="40dp"
             android:text="Create/Edit"
             android:id="@+id/createBn"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:background="@drawable/mybutton"
             />
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:text="View Gallery"
             android:id="@+id/viewBn"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:background="@drawable/mybutton"
             />
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:text="Reset"
             android:id="@+id/resetbn"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:background="@drawable/mybutton"
             />
 
     </LinearLayout>
