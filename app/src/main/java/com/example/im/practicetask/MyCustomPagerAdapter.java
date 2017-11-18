@@ -1,10 +1,13 @@
 package com.example.im.practicetask;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -23,7 +26,6 @@ public class MyCustomPagerAdapter extends PagerAdapter {
     Context context;
     ArrayList<String> images;
     LayoutInflater layoutInflater;
-
     // Initializing Constructor
     public MyCustomPagerAdapter(Context context, ArrayList<String> images) {
         this.context = context;
@@ -46,6 +48,9 @@ public class MyCustomPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         LinearLayout itemView = (LinearLayout) layoutInflater.inflate(R.layout.item, container, false);
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+        EditText  caption=(EditText) itemView.findViewById(R.id.caption);
+        Button set=(Button)itemView.findViewById(R.id.set);
+
         if(images.get(position)!=null) {
             Glide.with(getApplicationContext()).load(images.get(position).toString())
                     .thumbnail(0.5f)
@@ -61,7 +66,12 @@ public class MyCustomPagerAdapter extends PagerAdapter {
                 Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_SHORT).show();
             }
         });
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                     }
+        });
         return itemView;
     }
     //Destroys the view.

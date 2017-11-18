@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.im.practicetask.MainActivity">
+    tools:context="com.example.im.practicetask.MainActivity"
+    android:background="@drawable/background"
+    >
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/loginStatus"
-    android:textAlignment="center"/>
+    android:textAlignment="center" />
     <Button
         android:id="@+id/gmail_signinbutton"
         android:layout_width="match_parent"

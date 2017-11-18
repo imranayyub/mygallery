@@ -105,19 +105,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                 });
-
-//        c=dbhelp.checkLogin();
-//        if (c.getApp().equals("Google"))
+//
+//        String checkApp=dbhelp.checkApp();
+//        if (checkApp.equals("Google"))
 //        {
-//            dbhelp.delete();
-//            signIn();
+//            Intent intent = new Intent(MainActivity.this, MyGallery.class);
+//            startActivity(intent);
+//            finish();
 //        }
 //
 //
-//         else if (c.getApp().equals("Facebook"))
+//         else if (checkApp.equals("Facebook"))
 //        {
-//            dbhelp.delete();
-//            LoginManager.getInstance().logInWithReadPermissions(MainActivity.this, Arrays.asList("public_profile", "user_friends", "email"));
+//            Intent intent = new Intent(MainActivity.this, MyGallery.class);
+//            startActivity(intent);
 //        }
 
     }
@@ -195,6 +196,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             c.setDate(DateFormat.getDateTimeInstance().format(new Date()).toString());
                             dbhelp.insert(c);
                             Intent intent = new Intent(MainActivity.this, MyGallery.class);
+                            Bundle bundle =new Bundle();
+                            bundle.putString("name",userName);
+                            bundle.putString("email",email);
+                            bundle.putString("userPic",userPic);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
 

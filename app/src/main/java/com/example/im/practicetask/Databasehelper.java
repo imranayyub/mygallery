@@ -117,20 +117,44 @@ public class Databasehelper extends SQLiteOpenHelper {
     public ArrayList<String> getGalleryImage() {
 
         ArrayList<String> galleryImage = new ArrayList<>();
-        int i=0;
+        int i = 0;
         String pic;
         db = this.getReadableDatabase(); //Gets the Readable database.
-        String Query = "Select * from " + TABLE_NAME +" where GalleryImage not(null)";
+        String Query = "Select * from " + TABLE_NAME + " where " + COLUMN_GALLERYIMAGE + " IS NOT NULL";
         Cursor cursor = db.rawQuery(Query, null);  //Cursor is the Interface which represents a 2 dimensional table of any database. When you try to retrieve some data using SELECT statement, then the database will first create a CURSOR object and return its reference to you.
         cursor.moveToFirst();   //Makes Cursor point to First Record.
         int count = cursor.getCount();
         if (count > 0) {
             for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                 pic = cursor.getString(cursor.getColumnIndex("GALLERYIMAGE"));
-                galleryImage.add(i,pic);
-                i=i+1;
+                if (!pic.equals(null)) {
+                    galleryImage.add(i, pic);
+                    i = i + 1;
+                }
             }
         }
         return galleryImage;
     }
+
+    public void deleteGalleryImage() {
+        String query = "Delete from " + TABLE_NAME + " where " + COLUMN_GALLERYIMAGE + " IS NOT NULL";
+        db.execSQL(query);
+    }
+
+    public String checkApp() {
+        db = this.getReadableDatabase(); //Gets the Readable database.
+        String Query = "Select * from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(Query, null);  //Cursor is the Interface which represents a 2 dimensional table of any database. When you try to retrieve some data using SELECT statement, then the database will first create a CURSOR object and return its reference to you.
+        cursor.moveToFirst();   //Makes Cursor point to First Record.
+        int count = cursor.getCount();
+        String login_app = "";
+
+        if (count > 0) {
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                login_app = cursor.getString(cursor.getColumnIndex("APP"));       //Fetches data Stored in APP Column of the Table.
+                c.setApp(login_app);
+            }
+        }return login_app;
+    }
+
 }

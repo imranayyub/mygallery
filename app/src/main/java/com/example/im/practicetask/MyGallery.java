@@ -66,6 +66,7 @@ public class MyGallery extends MainActivity {
                         .thumbnail(0.5f)
                         .crossFade()
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .transform(new CircleTransform(MyGallery.this))
                         .into(pic);
             }
             gmaillogOutBn.setVisibility(View.VISIBLE);
@@ -75,6 +76,7 @@ public class MyGallery extends MainActivity {
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .transform(new CircleTransform(MyGallery.this)) // applying the image transformer
                     .into(pic);
 
 
@@ -156,6 +158,9 @@ public class MyGallery extends MainActivity {
             if (clipData == null) {
                 Uri img = data.getData();
                 imagearray.add(0, img.toString());
+                c.setGalleryImage(img.toString());
+                c.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+                dbhelp.insert(c);
             }
             //In Case of Multiple Images
             if (clipData != null) {
@@ -173,5 +178,8 @@ public class MyGallery extends MainActivity {
 //public ArrayList<String> galleryimages(){
 //    return imagearray;
 //}
-
+public void delGalleryImages()
+{
+  dbhelp.deleteGalleryImage();
+}
 }
